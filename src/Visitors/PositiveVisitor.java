@@ -25,8 +25,14 @@ public class PositiveVisitor extends ButtonVisitor{
         ActionListener temp = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                text.setText(UserManagerSingleton.getInstance().calcPositive() +
-                        " positive messages (messages with +'s)");
+                double result = (double)UserManagerSingleton.getInstance().getNumOfMessages();
+                if (result == 0){
+                    text.setText(0 + "% positive messages (messages with +'s)");
+                }
+                else {
+                    text.setText(((double) UserManagerSingleton.getInstance().calcPositive() / result)*100 +
+                            "% positive messages (messages with +'s)");
+                }
             }
         };
         return temp;
