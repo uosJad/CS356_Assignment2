@@ -30,7 +30,7 @@ public class NewGroupVisitor extends ButtonVisitor{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JTextField tempField = (JTextField)textFieldWidjet.getJComponent();
-                UserManagerSingleton.getInstance().addGroup(tempField.getText());
+                UserManagerSingleton.getInstance().addGroup(tempField.getText() + " (Group)");
             }
         };
     }
