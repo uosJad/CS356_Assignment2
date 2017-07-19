@@ -32,8 +32,8 @@ public class RightControlContainer extends WidjetContainer {
         int divx = 6;
         int divy = 6;
 
-        textField = new TextFieldWidjet("Text Here",2,26,60,6,divx,divy);
-        containerWidjets.add(textField);
+        //textField = new TextFieldWidjet("Text Here",2,26,60,6,divx,divy);
+        //containerWidjets.add(textField);
 
         alertLable = new TextLabelWidjet("", 2, 34,60, 6, divx,divy);
         containerWidjets.add(alertLable);
@@ -41,8 +41,6 @@ public class RightControlContainer extends WidjetContainer {
 
         generateUpperButtons(divx,divy);
         generateLowerButtons(divx,divy);
-
-
     }
 
     private void generateUpperButtons(int divx, int divy){
@@ -64,6 +62,15 @@ public class RightControlContainer extends WidjetContainer {
     }
 
     private void generateLowerButtons(int divx, int divy){
+
+        ButtonWidjet userValid = new ButtonWidjet("Valid users check",2,51,29,6,divx,divy);
+        userValid.acceptVisitor(new ValidUsersVisitor(alertLable));
+        containerWidjets.add(userValid);
+
+        ButtonWidjet lastUpdate = new ButtonWidjet("Last update user",33,51,29,6,divx,divy);
+        lastUpdate.acceptVisitor(new LastUpdateUserVisitor(alertLable));
+        containerWidjets.add(lastUpdate);
+
 
         ButtonWidjet userTotal = new ButtonWidjet("User Total",2,59,29,6,divx,divy);
         userTotal.acceptVisitor(new UserTotalVisitor(alertLable));

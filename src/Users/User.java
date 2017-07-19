@@ -13,6 +13,8 @@ public class User {
     private Stack<String> messages;
     private Set<User> followers;
     private Set<User> following;
+    private long creationTime;
+    private long lastUpdateTime;
 
     public User(){
 
@@ -24,6 +26,8 @@ public class User {
         messages = new Stack<>();
         followers = new HashSet<>();
         following = new HashSet<>();
+        creationTime = System.currentTimeMillis();
+        lastUpdateTime = System.currentTimeMillis();
         //followers.add(this);
     }
 
@@ -86,7 +90,20 @@ public class User {
     }
 
     public void updateMessage(String s){
+        lastUpdateTime = System.currentTimeMillis();
         messages.push(s);
+    }
+
+    public long getCreationTime() {
+        return creationTime;
+    }
+
+    public void setLastUpdateTime(long lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public long getLastUpdateTime() {
+        return lastUpdateTime;
     }
 
     /*

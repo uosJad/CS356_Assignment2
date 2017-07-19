@@ -33,11 +33,12 @@ public class SendMessageVisitor extends ButtonVisitor{
                 JTextField textField = (JTextField)textFieldWidjet.getJComponent();
                 String message = thisUser.getID() + ": " + textField.getText();
                 thisUser.updateMessage(message);
+                thisUser.setLastUpdateTime(System.currentTimeMillis());
                 userViewContainer.sendMessage(message);
                 sendToFollowers(message, thisUser);
 
                 UserManagerSingleton.getInstance().incrementNumOfMessages();
-                UserManagerSingleton.getInstance().addMessage(textField.getText());
+                UserManagerSingleton.getInstance().addMessage(textField.getText(), thisUser);
 
             }
         };
@@ -49,6 +50,7 @@ public class SendMessageVisitor extends ButtonVisitor{
         while (it.hasNext()){
             User otherUser = it.next();
             otherUser.updateMessage(s);
+            otherUser.setLastUpdateTime(System.currentTimeMillis());
             updateOtherView(s, otherUser);
         }
     }

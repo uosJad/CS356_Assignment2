@@ -26,10 +26,11 @@ public class UserViewContainer extends WidjetContainer {
 
     public void setUser(User s){
         user = s;
+        followingList.addToList("User created at: " + user.getCreationTime());
         followingList.addToList("Currently following:");
         followingList.fillList(s.getFollowing(), true);
 
-        messageList.addToList("News Feed:");
+        messageList.addToList("News Feed (Last update at " + user.getLastUpdateTime() + "):");
         messageList.fillList(user.getMessages(), false);
     }
 
@@ -68,6 +69,7 @@ public class UserViewContainer extends WidjetContainer {
 
     public void sendMessage(String s){
         messageList.addToList(s);
+        messageList.setValueAtIndex("News Feed (Last update at " + user.getLastUpdateTime() + "):", 0);
     }
 
     public void addFollowing(String s){

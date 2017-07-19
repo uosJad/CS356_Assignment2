@@ -35,6 +35,10 @@ public class ListWidjet extends SingleWidjet{
         }
     }
 
+    public void setValueAtIndex(String s, int i){
+        listModel.setElementAt(s, i);
+    }
+
     public void addToList(String s){
         listModel.addElement(s);
     }

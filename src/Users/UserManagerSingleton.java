@@ -26,6 +26,8 @@ public class UserManagerSingleton {
     private TextLabelWidjet labelWidjet;
     private int numOfMessages;
 
+    private User lastUpdateUser;
+
     private UserManagerSingleton(){
         users = new HashSet<>();
         userViews = new HashSet<>();
@@ -125,6 +127,18 @@ public class UserManagerSingleton {
         return count;
     }
 
+    public boolean isValidUsers(){
+        Iterator<User> it = users.iterator();
+        int count = 0;
+        while (it.hasNext()){
+            if (it.next().getID().contains(" ")){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     public int getTotalGroups(){
         Iterator<User> it = users.iterator();
         int count = 0;
@@ -144,8 +158,13 @@ public class UserManagerSingleton {
         this.numOfMessages++;
     }
 
-    public void addMessage(String s){
+    public void addMessage(String s, User u){
+        lastUpdateUser = u;
         messageSet.add(s);
+    }
+
+    public User getLastUpdateUser(){
+        return lastUpdateUser;
     }
 
     public int calcPositive(){
